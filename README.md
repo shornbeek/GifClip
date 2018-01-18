@@ -1,2 +1,2 @@
 # GifClip
-Gif Fun!
+Gif Fun. Right here!
