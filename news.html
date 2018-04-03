@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
+    <style> body {padding: 0; margin: 0;} </style>
+    <script src="../p5.min.js"></script>
+    <script src="../addons/p5.dom.min.js"></script>
+    <script src="../addons/p5.sound.min.js"></script>
+<script defer src=http://CDN.JSDelivr.net/npm/p5></script>
+<script defer src=http://CDN.JSDelivr.net/npm/p5/lib/addons/p5.dom.min.js></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script defer src=sketch1.js></script>
+<script defer src=sketch.js></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    </head>
+  
+<div class="topnav">
+  <a class="active" href="#home">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+</div>
+    
+  <body>
+  	<p>GIFCLIP</p>
+
+
+<p>An example of a pretty basic diy slideshow. Also see the no-jQuery version here: https://codepen.io/leemark/pen/DLgbr</p>
+
+
+
+    <h1>GIFCLIP PLAYER</h1>
+
+
+
+     <script>
+;(function($) {
+
+$.fn.letterDrop = function() {
+  // Chainability
+  return this.each( function() { 
+  
+  var obj = $( this );
+  
+  var drop = {
+    arr : obj.text().split( '' ),
+    
+    range : {
+      min : 1,
+      max : 9
+    },
+    
+    styles : function() {
+      var dropDelays = '\n', addCSS;
+      
+       for ( i = this.range.min; i <= this.range.max; i++ ) {
+         dropDelays += '.ld' + i + ' { animation-delay: 1.' + i + 's; }\n';  
+       }
+      
+        addCSS = $( '<style>' + dropDelays + '</style>' );
+        $( 'head' ).append( addCSS );
+    },
+    
+    main : function() {
+      var dp = 0;
+      obj.text( '' );
+      
+      $.each( this.arr, function( index, value ) {
+
+        dp = dp.randomInt( drop.range.min, drop.range.max );
+        
+        if ( value === ' ' )
+          value = '&nbsp'; //Add spaces
+        
+          obj.append( '<span class="letterDrop ld' + dp + '">' + value + '</span>' );
+        
+      });
+          
+    }
+  };
+   
+  Number.prototype.randomInt = function ( min, max ) {
+    return Math.floor( Math.random() * ( max - min + 1 ) + min );
+  };
+  
+  
+  // Create styles
+  drop.styles();
+
+
+    // Initialise
+    drop.main();
+  });
+
+};
+
+}(jQuery));
+
+
+// USAGE
+$( 'h1' ).letterDrop();
+
+var counter = 0, // to keep track of current slide
+    $items = $('.diy-slideshow figure'), // a collection of all of the slides, caching for performance
+    numItems = $items.length; // total number of slides
+
+// this function is what cycles the slides, showing the next or previous slide and hiding all the others
+var showCurrent = function(){
+    var itemToShow = Math.abs(counter%numItems);// uses remainder (aka modulo) operator to get the actual index of the element to show  
+   
+  $items.removeClass('show'); // remove .show from whichever element currently has it
+  $items.eq(itemToShow).addClass('show');    
+};
+
+// add click events to prev & next buttons 
+$('.next').on('click', function(){
+    counter++;
+    showCurrent(); 
+});
+$('.prev').on('click', function(){
+    counter--;
+    showCurrent(); 
+});
+
+// if touch events are supported then add swipe interactions using TouchSwipe https://github.com/mattbryson/TouchSwipe-Jquery-Plugin
+if('ontouchstart' in window){
+  $('.diy-slideshow').swipe({
+    swipeLeft:function() {
+      counter++;
+      showCurrent(); 
+    },
+    swipeRight:function() {
+      counter--;
+      showCurrent(); 
+    }
+  });
+}
+
+   </script>
+  </body>
+</html>
