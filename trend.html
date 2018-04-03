@@ -40,114 +40,49 @@
      <a href="http://gifclip.com/news.html" class="action-button  animate red">News</a>
 </div>
     </head>
+ 
+
+
+
  <body>
 
+  <div id='container'>
 
+    <div id='visibleTitle'>
 
-
-
-  <div rel="preload" class="giphy-wrapper">
-    <div class="settings">
-        <button id="querySearch" class="btn btn-default settings-btn" type="button">Search<span class="glyphicon" aria-hidden="true"></span></button>
-
-        <button id="querySearch1" class="btn btn-default settings-btn topnav a " type="button">Next<span class="glyphicon" aria-hidden="true"></span></button>
-        <div class="form settings-menu">
-            <div class="input-group">
-
-                <span class="input-group-btn">
-                </span>
-                  <input id="queryInput" type="text" class="form-control" value="fail" placeholder="Search for...">
-                  
-            </div><!-- /input-group -->
-        </div><!-- /.form -->
+   
+<div class="container"></div>
     
     </div>
-    <div class="giphy-container" id="giphy-holder">
-
-    </div>
-    <div id="giphy-link"></div>
-
-</div>
-
-
 
 <script>
+    const url = 'https://api.giphy.com/v1/gifs/trending?api_key=dc6zaTOxFJmzC';
 
-!function(){
+function validateResponse(response) {
+  return response.status === 200 ? response : false;
+}
 
-  function giphyQuery(query) {
-    if (!query) {
-      console.log("ERROR: No query entered");
-      return;
-    }
-    var query = query.replace(/ /g, '+');
+function handleData(data) {
+  const gRatedGifs = data.filter(item => item.rating === "g");
+  return gRatedGifs;
+}
 
-    var url = "https://api.giphy.com/v1/gifs/random?api_key=";
-    url += "yDCCeSvcpPbQ6VyCgzSv1zTTlb8gLQIx&tag=";
-    url += query;
+function printImages(images) {
+  console.log(images);
+  const eContainer = document.querySelector('.container');
+  var eImages = images.map((image, i) => `
+    <a href="${image.url}" title="Open at giphy.com" class="link" tabindex="${i + 1 }">
+      <img src="${image.images.fixed_height.url}" width="${image.images.fixed_height.width}" height="${image.images.fixed_height.height}" class="image" />
+    </a>`);
+  eContainer.innerHTML = eImages.join('');
+}
 
-    return url;
-  }
+fetch(url)
+  .then(response => validateResponse(response))
+  .then(response => response.json())
+  .then(response => handleData(response.data))
+  .then(gifs => printImages(gifs))
 
-  function makeImage(url, altText) {
-    var imgHTML = '<img class="img-responsive" src="';
-    imgHTML += url;
-    imgHTML += '" alt="'
-    imgHTML += altText;
-    imgHTML += '">';
-
-    return imgHTML;
-  }
-  
-  function makeAnchor(url) {
-      var anchor = '<a target="_blank" href="'
-      anchor += url;
-      anchor += '">';
-      anchor += '<small>' + url + '</small>';
-      anchor += '</a>';
-      
-      return anchor; 
-  }
-
-  function getQuery() {
-    return $('#queryInput').val();
-  }
-
-  function callJSON() {
-    var query = getQuery();
-    var url = giphyQuery(query);
-    $.getJSON(url, function(response){
-      if (!response.data.image_url) {
-        $('#giphy-holder').html("Sorry, No gif found.");
-        return;
-      };
-      var newImage = makeImage(response.data.image_url, response.data.caption);
-      var newAnchor = makeAnchor(response.data.image_url);
-      $('#giphy-holder').html(newImage);
-      $('#giphy-link').html(newAnchor);
-    });
-  }
-
-  // RUN THE PROGRAM
-
-  callJSON();
-
-  // EVENT HANDLERS
-
-  $("#querySearch").on('click', function(){
-    callJSON();
-  });
-
-   $("#querySearch1").on('click', function(){
-    callJSON();
-  });
-
-  $(document).keypress(function(e) {
-      if(e.which == 13) {
-          $("#querySearch").click();
-      }
-  });
-}();
 
 </script>
 
@@ -157,96 +92,6 @@
 </html>
 
 
-
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="./index.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css?family=Merriweather|Roboto" rel="stylesheet">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-</head>
-<body>
-    <div class="header">
-        <div class="banner">
-        <form class="search-form">
-            <div class="search-form-items">
-            <input class="search-field" type="search" placeholder="Find your GIF ..."/>
-            </div>
-         </form>
-        </div>
-        <div class="giphyResult">   
-        </div> 
-    <script src="./index.js"></script>
-</body>
-</html>
-
-<script>var mirrorText = document.querySelector(".mirror-text");
-var form = document.querySelector(".search-form");
-var field = document.querySelector(".search-field");
-var giphyResult = document.querySelector(".giphyResult");
-var clearSearch = document.querySelector(".search__clear");
-
-
-var url = "https://api.giphy.com/v1/gifs/search?";
-var apiKey = "eEe0r8lvLRjRB3jHcamfLfHjITajolsN";
-// build query string from user input to request data from API
-function getQueryString() {
-    var query   = url
-                + "q=" + encodeURI(field.value)
-                + "&api_key=" + apiKey
-
-    return query;
-}
-
-var result = {};
-// listen for submit event then return a json response object and push response to result variable
-form.addEventListener('submit', function(event) {
-    fetch(getQueryString())
-    .then(function(response) { return response.json(); })
-    .then(function(response) {
-        renderImages(response.data);
-    });
-    // prevent page reload 
-    event.preventDefault();
-    form.reset();
-});
-//render images
-function renderImages (data) {
-    var oldImage = document.querySelectorAll(".search__result");
-    if (oldImage.length > 0) {
-        oldImage.forEach(function(image) {
-            image.remove();
-        });
-    }
-
-    //loop through response data and creat new image elements
-    data.forEach(function(value, key){
-        // create anchor tag and append to div
-        var anchor = getElement("a", {href: value.url, class: "result__link", target: "_blank"});
-        setElement(anchor, ".giphyResult");
-        //create an image tag and append the image to the anchor tag
-        var image = getElement("img", {src: value.images.fixed_width.url,alt: value.title, class: "search__result"});
-        setElement(image, '.result__link');
-    });
-}
-/**
- * createElement
- * @param {string} type 
- * @param {object} attributes 
- */
-function getElement(type, attributes) {
-    var element = document.createElement(type);
-    for (attribute in attributes) {
-        element.setAttribute(attribute, attributes[attribute]);
-    }
-    return element;
-}
-//append image to target element
-function setElement (element, target) {
-    document.querySelector(target).appendChild(element);
-}</script>
 
 
 
@@ -276,14 +121,9 @@ function setElement (element, target) {
 
 </head>
 
-<body>
-  <div id='container'>
 
-    <div id='visibleTitle'>
-      <h1 class="centerText">GAME GIPHYS!</h1>
-    </div>
 
-    <h4 class="centerText">Try clicking on a button, to display some related GIFs. Add your own button by submitting via the search box.</p><p>Additionally, you can click each GIF to de-/activate its animation!</h4>
+   
 
     <!-- This will be where the buttons are added and displayed. -->
     <div id="buttonItems" class="centerText"></div>
@@ -453,3 +293,6 @@ function display() {
 
 }
 </script>
+
+
+
