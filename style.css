@@ -252,6 +252,145 @@ font-family: 'Roboto', sans-serif;
 
 
 
+/* buttons start
+
+body {
+  background-color: teal;
+  /*just in case main img doesn't load*/
+
+  /* background-image: url("../images/city_lights.gif"); */
+
+  /* background-image: url("../images/motorcycle.gif");
+  background-size: cover;  */
+
+  /* background-image: url("../images/80sgrid.gif");
+  background-size: cover; */
+
+  /* Note: downloaded and linked to local copy of images as opposed to web-hosted versions. Think my site may have been blocked from referencing their image too much */
+
+
+}
+
+h1 {
+  color: white;
+}
+
+h4 {
+  color: #479C48;
+}
+
+
+.centerText {
+  text-align: center;
+}
+
+.btn {
+  margin: 5px auto 5px auto;
+}
+
+/* .floatLeft {
+  float: left;
+} */
+/*
+.floatRight {
+  float: right;
+} */
+
+/* .special {
+  margin: 5px auto 5px auto;
+} */
+
+#container {
+  padding: 20px;
+  }
+
+#entry {
+  color: white;
+  background: red;
+  
+}
+
+#ratings {
+  /* color: #479C48; */
+  color: #f2f2f2;
+
+  /* https://css-tricks.com/adding-stroke-to-web-text/ */
+  -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: white;
+
+display: grid;
+grid-gap: 8px;
+grid-template-columns: repeat(4, 1fr);
+grid-template-rows: auto auto auto;
+justify-content: center;
+align-items: center;
+}
+
+#ratingDiv {
+  text-align: "center";
+  font-size: "20px";
+  width: "200px";
+/*   display: "block"; */
+}
+
+#theMagic {
+  margin-bottom: 20px;
+}
+
+
+
+/* trending page start */
+
+
+body {
+  padding: 1em;
+  background-color: white;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1em;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 2rem;
+}
+
+.image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+header {
+  margin: 10vh auto 10vh auto;
+  color: white;
+  font-family: 'Fira Code', 'monospace';
+  text-align: center;
+}
+
+header h1 {
+  max-width: 700px;
+  margin: 0 auto 1em auto;
+}
+
+header h2 {
+  max-width: 400px;
+  margin: 0 auto 0 auto;
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+footer {
+  margin: 10vh auto 10vh auto;
+  text-align: center;
+  font-size: 4rem;
+}
 
 
 
