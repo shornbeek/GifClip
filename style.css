@@ -93,6 +93,7 @@ h1 {
   text-transform: uppercase;
   @media (max-width:767px){
     font-size: 32px;
+    font-family: 'Poppins', sans-serif;
   }
 }
 
@@ -130,9 +131,9 @@ p {
 }
 
 .settings {
-  // position: absolute;
-  // top: 0;
-  // left: 0;
+  /* position: absolute; */
+ /* top: 0; */
+  /* left: 0;*/
   margin: 20px 0;
   padding: 0 10px;
 }
@@ -188,36 +189,33 @@ p {
     box-sizing: border-box;
 }
 /* reset */
-body, html, h1, 
-h2, h3, h4 , p, img {
-margin: 0;
-padding: 0;
-border: 0;
-font-family: 'Roboto', sans-serif;
-}
+
 
 .header-text {
     padding: 30px 10px 10px 30px;
 }
 .banner {
     background-color: #e74c3c; 
-    height: 300px;
+    height: 200px;
 }
 
 .mirror-text {
     font-size: 80px;
     width: 100%;
     text-align: left;
-    padding-top: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     padding-left: 50px;
     letter-spacing: 2px;
     font-family: 'Merriweather', serif;
+
   }
 
   .search-form {
       margin: 20px auto;
       width: 90%;
       position: relative;
+
   }
 
   .search-form-items {
@@ -231,6 +229,7 @@ font-family: 'Roboto', sans-serif;
     border-radius: 4px;
     color: white;
     outline: none;
+    padding-bottom: 10px;
 
   }
 
@@ -399,6 +398,7 @@ header {
 header h1 {
   max-width: 700px;
   margin: 0 auto 1em auto;
+  font-family: 'Poppins', sans-serif;
 }
 
 header h2 {
@@ -421,9 +421,12 @@ footer {
 .txtsize {
   font-size: 25px;
 
-
 }
 
+.morecon {
+  text-align: center;
+  margin-top: 0;
+}
 
 
 

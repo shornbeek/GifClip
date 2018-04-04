@@ -10,14 +10,17 @@
 <script defer src=http://CDN.JSDelivr.net/npm/p5></script>
 <script defer src=http://CDN.JSDelivr.net/npm/p5/lib/addons/p5.dom.min.js></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
 
-<script defer src=sketch.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700' rel='stylesheet' type='text/css'>
+
+  <script   src="http://code.jquery.com/jquery-3.3.1.js"   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="   crossorigin="anonymous"></script>
+
 <link rel="stylesheet" type="text/css" href="style.css">
- <link type='text/css' rel='stylesheet' href='assets/css/style.css' />
-
-<link href="./index.css" rel="stylesheet"/>
-
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -29,121 +32,429 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    </head>
-  
-<div class="topnav">
+
+
+
+
+    <div class="topnav">
   <a class="active" href="http://gifclip.com">GifClip</a>
     <a href="http://gifclip.com/trend.html" class="action-button  animate red">Trending</a>
-     <a href="http://gifclip.com/fail.html" class="action-button  animate red">Fail</a>
-     <a href="http://gifclip.com/news.html" class="action-button  animate red">Hot</a>
+     <a href="http://gifclip.com/fail.html" class="action-button  animate red">Funny</a>
+     <a href="http://gifclip.com/news.html" class="action-button  animate red">Sexy</a>
 </div>
-    
-  <body>
-  
-     <script>
-;(function($) {
+    </head>
+ <body>
 
-$.fn.letterDrop = function() {
-  // Chainability
-  return this.each( function() { 
-  
-  var obj = $( this );
-  
-  var drop = {
-    arr : obj.text().split( '' ),
-    
-    range : {
-      min : 1,
-      max : 9
-    },
-    
-    styles : function() {
-      var dropDelays = '\n', addCSS;
-      
-       for ( i = this.range.min; i <= this.range.max; i++ ) {
-         dropDelays += '.ld' + i + ' { animation-delay: 1.' + i + 's; }\n';  
-       }
-      
-        addCSS = $( '<style>' + dropDelays + '</style>' );
-        $( 'head' ).append( addCSS );
-    },
-    
-    main : function() {
-      var dp = 0;
-      obj.text( '' );
-      
-      $.each( this.arr, function( index, value ) {
+<h1>Man Gifs!</h1>
 
-        dp = dp.randomInt( drop.range.min, drop.range.max );
-        
-        if ( value === ' ' )
-          value = '&nbsp'; //Add spaces
-        
-          obj.append( '<span class="letterDrop ld' + dp + '">' + value + '</span>' );
-        
-      });
-          
+
+
+  <div rel="preload" class="giphy-wrapper">
+    <div class="settings">
+        <button id="querySearch1" class="btn btn-warning btn-lg settings-btn" type="button">More<span class="glyphicon" aria-hidden="true"></span></button>
+         <button id="querySearch" class="btn btn-default settings-btn" type="button">Search<span class="glyphicon" aria-hidden="true"></span></button>
+        <div class="form settings-menu">
+            <div class="input-group">
+
+                <span class="input-group-btn">
+                </span>
+                  <input id="queryInput" type="text" class="form-control" value="Sexy" placeholder="Search for...">
+                  
+            </div><!-- /input-group -->
+        </div><!-- /.form -->
+    </div>
+    <div class="giphy-container" id="giphy-holder">
+
+    </div>
+    <div id="giphy-link"></div>
+
+</div>
+
+
+
+<script>
+
+!function(){
+
+  function giphyQuery(query) {
+    if (!query) {
+      console.log("ERROR: No query entered");
+      return;
     }
-  };
-   
-  Number.prototype.randomInt = function ( min, max ) {
-    return Math.floor( Math.random() * ( max - min + 1 ) + min );
-  };
-  
-  
-  // Create styles
-  drop.styles();
+    var query = query.replace(/ /g, '+');
 
+    var url = "https://api.giphy.com/v1/gifs/random?api_key=";
+    url += "yDCCeSvcpPbQ6VyCgzSv1zTTlb8gLQIx&tag=";
+    url += query;
 
-    // Initialise
-    drop.main();
+    return url;
+  }
+
+  function makeImage(url, altText) {
+    var imgHTML = '<img class="img-responsive" src="';
+    imgHTML += url;
+    imgHTML += '" alt="'
+    imgHTML += altText;
+    imgHTML += '">';
+
+    return imgHTML;
+  }
+  
+  function makeAnchor(url) {
+      var anchor = '<a target="_blank" href="'
+      anchor += url;
+      anchor += '">';
+      anchor += '<small>' + url + '</small>';
+      anchor += '</a>';
+      
+      return anchor; 
+  }
+
+  function getQuery() {
+    return $('#queryInput').val();
+  }
+
+  function callJSON() {
+    var query = getQuery();
+    var url = giphyQuery(query);
+    $.getJSON(url, function(response){
+      if (!response.data.image_url) {
+        $('#giphy-holder').html("Sorry, No gif found.");
+        return;
+      };
+      var newImage = makeImage(response.data.image_url, response.data.caption);
+      var newAnchor = makeAnchor(response.data.image_url);
+      $('#giphy-holder').html(newImage);
+      $('#giphy-link').html(newAnchor);
+    });
+  }
+
+  // RUN THE PROGRAM
+
+  callJSON();
+
+  // EVENT HANDLERS
+
+  $("#querySearch").on('click', function(){
+    callJSON();
   });
 
-};
-
-}(jQuery));
-
-
-// USAGE
-$( 'h1' ).letterDrop();
-
-var counter = 0, // to keep track of current slide
-    $items = $('.diy-slideshow figure'), // a collection of all of the slides, caching for performance
-    numItems = $items.length; // total number of slides
-
-// this function is what cycles the slides, showing the next or previous slide and hiding all the others
-var showCurrent = function(){
-    var itemToShow = Math.abs(counter%numItems);// uses remainder (aka modulo) operator to get the actual index of the element to show  
-   
-  $items.removeClass('show'); // remove .show from whichever element currently has it
-  $items.eq(itemToShow).addClass('show');    
-};
-
-// add click events to prev & next buttons 
-$('.next').on('click', function(){
-    counter++;
-    showCurrent(); 
-});
-$('.prev').on('click', function(){
-    counter--;
-    showCurrent(); 
-});
-
-// if touch events are supported then add swipe interactions using TouchSwipe https://github.com/mattbryson/TouchSwipe-Jquery-Plugin
-if('ontouchstart' in window){
-  $('.diy-slideshow').swipe({
-    swipeLeft:function() {
-      counter++;
-      showCurrent(); 
-    },
-    swipeRight:function() {
-      counter--;
-      showCurrent(); 
-    }
+   $("#querySearch1").on('click', function(){
+    callJSON();
   });
+
+  $(document).keypress(function(e) {
+      if(e.which == 13) {
+          $("#querySearch").click();
+      }
+  });
+}();
+
+</script>
+
+
+
+
+
+<html lang="en">
+
+<head>
+  <!-- Spec: http://gw.bootcampcontent.com/GW-Coding-Boot-Camp/GWAR201710FSF5-Class-Repository-FSF/blob/master/06-ajax/02-Homework/Instructions/homework.md -->
+
+  <!-- Objective: create page which can dynamically create new buttons which, when clicked, show some  relating GIFs from the GIPHY website. Additinoally, pick a theme and have a few pre-made buttons already on page. When GIFs appear, user should be able to click them to start and stop their respective animations. -->
+
+  <meta charset="UTF-8">
+  <title>Gifs for Guys</title>
+
+
+  <!-- Custom Font Imported from Google -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans" /> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+  <!-- Link to own CSS -->
+  <link type='text/css' rel='stylesheet' href='assets/css/style.css' />
+
+</head>
+
+<body>
+  <div id='container'>
+
+     <h3><center> View More!</h3>
+      <h4>Choose a category then click on the gif!</h4>
+
+
+    <!-- This will be where the buttons are added and displayed. -->
+    <div id="buttonItems" class="centerText"></div>
+
+    <!-- This is the form to add a game-themed button to the array. -->
+    <div id="theMagic" class="container text-center">
+      <form  class="form-inline">
+        <div class="form-group">
+          <input class="hide" type="text" id="game-input" class="form-control" placeholder="m">
+        </div>
+        <input class="hide" id="addGameItem" type="submit" value="Make Button" >
+        <!-- If there are any error messages, they should appear here -->
+        <span id="entry"></span>
+      </form>
+    </div>
+    <!-- reference for properly centering forms via bootstrap: https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_form_inline&stacked=h -->
+
+    <!-- reference of all Bootsrap classes: https://www.w3schools.com/bootstrap/bootstrap_ref_all_classes.asp -->
+
+    <!-- This is where the GIFs will actually be shown to the user, after they've clicked the corresponding button. -->
+    <div id="ratings"></div>
+
+    <script type='text/javascript' src='assets/javascript/logic.js'></script>
+
+
+  </div>
+
+
+</body>
+
+</html>
+
+<script>
+
+// ref example(s) from class: GWU_Data_Bootcamp/GWAR201710FSF5-Class-Repository-FSF/06-ajax/01-Activities/14-DynamicElements
+
+// This is the initial videogame title array.
+var videoGames = ["Sexy Dancing", "Kissing", "Girl Butt", "Boy Butt", "", "Boobs", "Girl Fight", "Boxing", "Stocks", "Racing", "MLB", "NFL", "NBA", "NHL", "Design", "Surfing", "Cute woman", "Hot", "Sexy", "TheChive", "Extreme", "XGames"];
+var gameGIF = "";
+
+// This function shows all the buttons at the top of the page.
+function showButtons() {
+  $("#buttonItems").empty();
+  $("#game-input").val("");
+
+  for (var i = 0; i < videoGames.length; i++) {
+    var button = $("<button class='btn btn-primary'>");
+    button.addClass("game");
+    button.attr("game-name", videoGames[i]);
+    button.text(videoGames[i]);
+    $("#buttonItems").append(button);
+    $("#buttonItems").append(" ");
+  }
 }
 
-   </script>
+showButtons();
+
+// This runs when the user clicks "Load Game!, adding the seletion to the button array and updating the buttons.
+$("#addGameItem").on("click", function(event) {
+  $("#entry").empty();
+  event.preventDefault();
+  var gameInput = $("#game-input").val().trim();
+  var gameTerm = $(this).attr("game-name");
+
+  //  Ensures the user's button has at least 12 GIFs available from GIPHY API.
+  // If there aren't 12, an error message will be shown and no button will be created.
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gameInput + "&limit=1&api_key=XNXXBU3B0vxwgDFnrUVQrnh1U12f5CSP" + "&offset=" + Math.floor((Math.random() * 100) + 1);
+
+  //couldn't seem to get different gifs for each button press; tried "offset" and it WORKED! after I remembered I had two different sections w/ API calls! Now, I have varying reuslts when the same button is pressed more than once! (cool)
+  // GIPHY documentation reference: https://developers.giphy.com/docs/
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).done(function(response) {
+
+    if (response.pagination.total_count >= 12) {
+      videoGames.push(gameInput);
+      showButtons();
+    } else if (response.pagination.total_count === 0) {
+      $("#entry").html(" Sorry, nothing in the GIPHY database.  Please try again!");
+    } else if (response.pagination.total_count === 1) {
+      $("#entry").html(" Sorry, there was only 1 result for this.  Please try again.");
+    } else {
+      $("#entry").html(" Sorry, there were only " + response.pagination.total_count + " results for this.  Please try again.");
+    }
+    $("#game-input").val("");
+  });
+
+});
+
+$(document).on("click", ".game", display);
+
+function display() {
+
+  // Clears out error message (if one pops up)
+  $("#entry").empty();
+
+  // defines and then executes; clears old gifs when new gifs are called after button press <-----this is now working; was referencing the wrong section at first (i.e. "theMagic" id instead of the correct "ratings" id)
+  function clearGifs() {
+    $("#ratings").empty();
+  }
+  clearGifs();
+
+  var gameTerm = $(this).attr("game-name");
+
+  // The GIPHY query.  This limits to 12 results
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gameTerm + "&limit=12&api_key=XNXXBU3B0vxwgDFnrUVQrnh1U12f5CSP" + "&offset=" + Math.floor((Math.random() * 100) + 1);
+
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).done(function(response) {
+
+    // This runs 10 times (limit is 10 per above query) to show all the GIPHY pictures from the website's API response.
+    for (var i = 0; i < response.data.length; i++) {
+
+      // Gets the animated gif URL
+      var active = response.data[i].images.fixed_width.url;
+      // Gets the still gif URL
+      var still = response.data[i].images.fixed_width_still.url;
+      var rating = "Rating: " + (response.data[i].rating).toUpperCase();
+
+      // Creates the new img item
+      var gameGIF = $("<img>");
+
+      // Changes the text color of ratings to green so can be seen against background more easily
+      $("#ratings");
+
+      // This creates a new div for the rating so that it maintains the gifs size
+      var ratingDiv = $("<div id='ratingDiv'>" + rating + "</div>");
+
+      gameGIF.attr({
+        "active": active,
+        "still": still,
+        "src": still,
+        "state": "still"
+      });
+
+      // This holds the new div for both the image itself and the associated rating. All images should be paired w/ their rating.
+      var ratingAndImage = $("<div class='floatLeft'>");
+
+      $(ratingAndImage).prepend(gameGIF, ratingDiv);
+
+      // This adds the rating and image to the page.
+      $("#ratings").prepend(ratingAndImage);
+
+      // When the user clicks on a GIF, this will either start or stop the animation of said GIF.
+      $(gameGIF).on("click", function(event) {
+
+        // Clears out any error messages, concerning query response i.e. number of results (if there are too few)
+        $("#entry").empty();
+
+        var state = $(this).attr("state");
+        var source = $(this).attr("src");
+
+        if (state === "still") {
+          $(this).attr("src", $(this).attr("active"));
+          $(this).attr("state", "active");
+        } else {
+          $(this).attr("src", $(this).attr("still"));
+          $(this).attr("state", "still");
+        }
+      });
+
+    }
+
+  });
+
+}
+</script>
+
+
+
+
+
+
+
+
   </body>
 </html>
+
+
+<body>
+
+   <h3> Not what your looking for? </h3>
+
+
+    <div class="header">
+        <div class="banner">
+        <form class="search-form">
+            <div class="search-form-items">
+            <input class="search-field txtsize" type="search" placeholder="Find A Gif ..."/>
+            </div>
+         </form>
+        </div>
+        <div class="giphyResult">   
+        </div> 
+    <script src="./index.js"></script>
+
+   
+
+</body>
+</html>
+
+<script>var mirrorText = document.querySelector(".mirror-text");
+var form = document.querySelector(".search-form");
+var field = document.querySelector(".search-field");
+var giphyResult = document.querySelector(".giphyResult");
+var clearSearch = document.querySelector(".search__clear");
+
+
+var url = "https://api.giphy.com/v1/gifs/search?";
+var apiKey = "eEe0r8lvLRjRB3jHcamfLfHjITajolsN";
+// build query string from user input to request data from API
+function getQueryString() {
+    var query   = url
+                + "q=" + encodeURI(field.value)
+                + "&api_key=" + apiKey
+
+    return query;
+}
+
+var result = {};
+// listen for submit event then return a json response object and push response to result variable
+form.addEventListener('submit', function(event) {
+    fetch(getQueryString())
+    .then(function(response) { return response.json(); })
+    .then(function(response) {
+        renderImages(response.data);
+    });
+    // prevent page reload 
+    event.preventDefault();
+    form.reset();
+});
+//render images
+function renderImages (data) {
+    var oldImage = document.querySelectorAll(".search__result");
+    if (oldImage.length > 0) {
+        oldImage.forEach(function(image) {
+            image.remove();
+        });
+    }
+
+    //loop through response data and creat new image elements
+    data.forEach(function(value, key){
+        // create anchor tag and append to div
+        var anchor = getElement("a", {href: value.url, class: "result__link", target: "_blank"});
+        setElement(anchor, ".giphyResult");
+        //create an image tag and append the image to the anchor tag
+        var image = getElement("img", {src: value.images.fixed_width.url,alt: value.title, class: "search__result"});
+        setElement(image, '.result__link');
+    });
+}
+/**
+ * createElement
+ * @param {string} type 
+ * @param {object} attributes 
+ */
+function getElement(type, attributes) {
+    var element = document.createElement(type);
+    for (attribute in attributes) {
+        element.setAttribute(attribute, attributes[attribute]);
+    }
+    return element;
+}
+//append image to target element
+function setElement (element, target) {
+    document.querySelector(target).appendChild(element);
+}</script>
+
+
+
+
+
