@@ -392,6 +392,15 @@ footer {
   font-size: 4rem;
 }
 
+.hide {
+   opacity: 0;
+}
+
+.txtsize {
+  font-size: 32px;
+  
+}
+
 
 
 
