@@ -55,7 +55,7 @@
 
                 <span class="input-group-btn">
                 </span>
-                  <input id="queryInput" type="text" class="form-control" value="Welcome" placeholder="Search for...">
+                  <input id="queryInput" type="text" class="form-control" value="Hey Dude" placeholder="Search for...">
                   
             </div><!-- /input-group -->
         </div><!-- /.form -->
@@ -67,6 +67,8 @@
     <div id="giphy-link"></div>
 
 </div>
+
+
 
 
 
@@ -162,13 +164,8 @@
   <!-- Objective: create page which can dynamically create new buttons which, when clicked, show some  relating GIFs from the GIPHY website. Additinoally, pick a theme and have a few pre-made buttons already on page. When GIFs appear, user should be able to click them to start and stop their respective animations. -->
 
   <meta charset="UTF-8">
-  <title>GIPHY HW</title>
+  <title>Gifs for Guys</title>
 
-  <!-- Added a link to Bootstrap-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <!-- This links to the jQuery Library -->
-  <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
 
   <!-- Custom Font Imported from Google -->
   <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans" /> -->
@@ -189,11 +186,11 @@
 
     <!-- This is the form to add a game-themed button to the array. -->
     <div id="theMagic" class="container text-center">
-      <form id="form" class="form-inline">
+      <form  class="form-inline">
         <div class="form-group">
-          <input type="text" id="game-input" class="form-control" placeholder="Insert Cartridge... (e.g. Game Name)">
+          <input class="hide" type="text" id="game-input" class="form-control" placeholder="m">
         </div>
-        <input id="addGameItem" type="submit" class="btn btn-success " value="Load Game!">
+        <input class="hide" id="addGameItem" type="submit" value="Make Button" >
         <!-- If there are any error messages, they should appear here -->
         <span id="entry"></span>
       </form>
@@ -218,7 +215,7 @@
 // ref example(s) from class: GWU_Data_Bootcamp/GWAR201710FSF5-Class-Repository-FSF/06-ajax/01-Activities/14-DynamicElements
 
 // This is the initial videogame title array.
-var videoGames = ["Dancing", "Funny", "Animals", "Dog", "Cat", "Boobs", "MMA", "Boxing", "Stocks", "Racing", "MLB", "NFL", "NBA", "NHL", "Surfing", "Cute", "Hot", "Sexy", "TheChive", "Extreme", "XGames"];
+var videoGames = ["Dancing", "Funny", "Animals", "Dog", "Cat", "Boobs", "MMA", "Boxing", "Stocks", "Racing", "MLB", "NFL", "NBA", "NHL", "Design", "Surfing", "Cute", "Hot", "Sexy", "TheChive", "Extreme", "XGames"];
 var gameGIF = "";
 
 // This function shows all the buttons at the top of the page.
