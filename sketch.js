@@ -1,7 +1,7 @@
 
 var api = "https://api.giphy.com/v1/gifs/search?";
 var apiKey = "&api_key=yDCCeSvcpPbQ6VyCgzSv1zTTlb8gLQIx";
-var query = "&q=sexy+boobs+girl&limit=62&offset=0&lang=en&rating=pg-13";
+var query = "&q=sexy+boobs+woman&limit=62&offset=0&lang=en&rating=pg-13";
 
 
 
