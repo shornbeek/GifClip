@@ -141,10 +141,23 @@ p {
 .settings-btn {
   border-radius: 0;
   float: left;
+  position: relative;
+  top: -5px;
+  
+
+}
+
+.settings-btn1 {
+  border-radius: 0;
+  float: right;
+  position: relative;
+  top: -16px;
 }
 
 // .settings-menu {
 //   display: none;
+position: relative;
+     
 // }
 
 /*--------------------------------------------------
@@ -168,6 +181,7 @@ p {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 15px;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Change the color of links on hover */
