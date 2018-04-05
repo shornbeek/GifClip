@@ -349,7 +349,7 @@ h4 {
 
 #ratings {
   /* color: #479C48; */
-  color: #f2f2f2;
+  color: #fff;
 
   /* https://css-tricks.com/adding-stroke-to-web-text/ */
   -webkit-text-stroke-width: 1px;
@@ -357,10 +357,11 @@ h4 {
 
 display: grid;
 grid-gap: 8px;
-grid-template-columns: repeat(2, 1fr);
-grid-template-rows: auto auto auto;
 justify-content: center;
 align-items: center;
+max-width: 120%;
+
+
 }
 
 #ratingDiv {
