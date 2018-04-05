@@ -49,13 +49,13 @@ time, mark, audio, video {
 header {
   margin: 10vh auto 10vh auto;
   color: white;
-  font-family: 'Fira Code', 'monospace';
   text-align: center;
 }
 
 header h1 {
   max-width: auto;
   margin: 0 auto 1em auto;
+  
 }
 
 header h2 {
@@ -63,6 +63,7 @@ header h2 {
   margin: 0 auto 0 auto;
   font-weight: normal;
   font-size: 1rem;
+ 
 }
 
 footer {
@@ -85,19 +86,14 @@ footer {
 
 h1 {
   margin-bottom: 15px;
-  font-size: 48px;
   text-align: center;
   text-transform: uppercase;
   @media (max-width:767px){
-    font-size: 32px;
     font-family: 'Poppins', sans-serif;
   }
 }
 
-p {
-  text-align: center;
-  margin-top: 20px;
-}
+
 
 .giphy-wrapper {
   text-align: center;
@@ -164,7 +160,7 @@ p {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 /* Change the color of links on hover */
@@ -287,14 +283,11 @@ body {
   /* Note: downloaded and linked to local copy of images as opposed to web-hosted versions. Think my site may have been blocked from referencing their image too much */
 
 
-}
 
-h1 {
-  color: white;
-}
 
 h4 {
   color: #479C48;
+  font-family: 'Poppins', sans-serif;
 }
 
 
@@ -388,7 +381,7 @@ body {
 header {
   margin: 10vh auto 10vh auto;
   color: white;
-  font-family: 'Fira Code', 'monospace';
+  font-family: 'Poppins', sans-serif;
   text-align: center;
 }
 
@@ -403,6 +396,7 @@ header h2 {
   margin: 0 auto 0 auto;
   font-weight: normal;
   font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 footer {
