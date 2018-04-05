@@ -338,7 +338,7 @@ h4 {
 } */
 
 #container {
-  padding: 20px;
+  padding: 5px;
   }
 
 #entry {
@@ -357,7 +357,7 @@ h4 {
 
 display: grid;
 grid-gap: 8px;
-grid-template-columns: repeat(4, 1fr);
+grid-template-columns: repeat(2, 1fr);
 grid-template-rows: auto auto auto;
 justify-content: center;
 align-items: center;
@@ -371,7 +371,7 @@ align-items: center;
 }
 
 #theMagic {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 
