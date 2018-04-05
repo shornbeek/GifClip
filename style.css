@@ -94,6 +94,7 @@ h1 {
   @media (max-width:767px){
     font-size: 32px;
     font-family: 'Poppins', sans-serif;
+
   }
 }
 
@@ -316,7 +317,8 @@ h4 {
 
 
 .centerText {
-  text-align: center;
+  text-align: left;
+  width: 100%;
 }
 
 .btn {
@@ -413,6 +415,7 @@ header h1 {
   max-width: 700px;
   margin: 0 auto 1em auto;
   font-family: 'Poppins', sans-serif;
+
 }
 
 header h2 {
@@ -440,6 +443,12 @@ footer {
 .morecon {
   text-align: center;
   margin-top: 0;
+}
+
+.topd {
+  text-align: center;
+  position: relative;
+ top: 5px;
 }
 
 
