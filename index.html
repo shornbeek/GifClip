@@ -43,7 +43,7 @@
   <a class="active" href="http://gifclip.com">GifClip</a>
     <a href="http://gifclip.com/trend.html" class="action-button  animate red">Trending</a>
      <a href="http://gifclip.com/fail.html" class="action-button  animate red">Funny</a>
-     <a href="http://gifclip.com/news.html" class="action-button  animate red">Sexy</a>
+     <!-- <a href="http://gifclip.com/news.html" class="action-button  animate red">Sexy</a> -->
 </div>
     </head>
  <body>
@@ -172,9 +172,9 @@
     <div id="theMagic" class="container text-center ">
       <form  class="form-inline">
         <div class="form-group">
-          <input class="hide" type="text" id="game-input" class="form-control" placeholder="m">
+          <!-- <input class="hide" type="text" id="game-input" class="form-control" placeholder="m"> -->
         </div>
-        <input class="hide" id="addGameItem" type="submit" value="Make Button" >
+        <!-- <input class="hide" id="addGameItem" type="submit" value="Make Butt÷on" > -->
         <!-- If there are any error messages, they should appear here -->
         <span id="entry"></span>
       </form>
@@ -186,7 +186,7 @@
     <!-- This is where the GIFs will actually be shown to the user, after they've clicked the corresponding button. -->
     <div id="ratings"></div>
 
-    <script type='text/javascript' src='assets/javascript/logic.js'></script>
+  
 
 
   </div>
@@ -260,18 +260,18 @@ $(document).on("click", ".game", display);
 function display() {
 
   // Clears out error message (if one pops up)
-  $("#entry").empty();
+  // $("#entry").empty();
 
   // defines and then executes; clears old gifs when new gifs are called after button press <-----this is now working; was referencing the wrong section at first (i.e. "theMagic" id instead of the correct "ratings" id)
-  function clearGifs() {
-    $("#ratings").empty();
-  }
-  clearGifs();
+  // function clearGifs() {
+  //   $("#ratings").empty();
+  // }
+  // clearGifs();
 
   var gameTerm = $(this).attr("game-name");
 
   // The GIPHY query.  This limits to 12 results
-  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gameTerm + "&limit=12&api_key=XNXXBU3B0vxwgDFnrUVQrnh1U12f5CSP" + "&offset=" + Math.floor((Math.random() * 100) + 1);
+  var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gameTerm + "&limit=12&api_key=XNXXBU3B0vxwgDFnrUVQrnh1U12f5CSP" + "&offset=" + Math.floor((Math.random() * 200) + 1);
 
   $.ajax({
     url: queryURL,
@@ -288,7 +288,7 @@ function display() {
       var rating = "Rating: " + (response.data[i].rating).toUpperCase();
 
       // Creates the new img item
-      var gameGIF = $("<img>");
+      var gameGIF = $("<img>")
 
       // Changes the text color of ratings to green so can be seen against background more easily
       $("#ratings");
@@ -330,7 +330,7 @@ function display() {
       });
 
     }
-
+   
   });
 
 }

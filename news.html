@@ -41,7 +41,7 @@
   <a class="active" href="http://gifclip.com">GifClip</a>
     <a href="http://gifclip.com/trend.html" class="action-button  animate red">Trending</a>
      <a href="http://gifclip.com/fail.html" class="action-button  animate red">Funny</a>
-     <a href="http://gifclip.com/news.html" class="action-button  animate red">Sexy</a>
+     <!-- <a href="http://gifclip.com/news.html" class="action-button  animate red">Sexy</a> -->
 </div>
     </head>
  <body>
@@ -182,6 +182,7 @@
 
     <!-- This is where the GIFs will actually be shown to the user, after they've clicked the corresponding button. -->
     <div id="ratings"></div>
+    <!-- <div id="morning"></div> -->
 
     <script type='text/javascript' src='assets/javascript/logic.js'></script>
 
@@ -198,19 +199,28 @@
 // ref example(s) from class: GWU_Data_Bootcamp/GWAR201710FSF5-Class-Repository-FSF/06-ajax/01-Activities/14-DynamicElements
 
 // This is the initial videogame title array.
-var videoGames = ["Sexy Dancing", "Miss America", "Girl Butt", "Bikini", "Boobs", "Bachelor", "Asian Girl", "Sexy Blond", "Brunette", "Yoga Pants", "NFL Cheerleader", "Tight Dress", "Twerk", "Lesbian", "Lingerie", "Milf", "Cute Girl", "Hot Girl", "Sexy", "TheChive", "Redhead", "PlayBoy", "Wonder Woman", "Hooters"];
+var gifButArr = ["Sexy Dancing", "Miss America", "Girl Butt", "Bikini", "Boobs", "Bachelor", "Asian Girl", "Sexy Blond", "Brunette", "Yoga Pants", "NFL Cheerleader", "Tight Dress", "Twerk", "Lesbian", "Lingerie", "Milf", "Cute Girl", "Hot Girl", "Sexy", "TheChive", "Redhead", "PlayBoy", "Wonder Woman", "Hooters"];
 var gameGIF = "";
+
+// $( document ).ready(function() {
+  //   console.log( "ready!" );
+  //   for (var i = 0; i < gifButArr.length; i++) {
+  // $("#morning").html(gifButArr[2]);
+  //   }
+
+  //  $("#morning").html(gifButArr[2]);
+// });
 
 // This function shows all the buttons at the top of the page.
 function showButtons() {
   $("#buttonItems").empty();
   $("#game-input").val("");
 
-  for (var i = 0; i < videoGames.length; i++) {
+  for (var i = 0; i < gifButArr.length; i++) {
     var button = $("<button class='btn btn-primary'>");
     button.addClass("game");
-    button.attr("game-name", videoGames[i]);
-    button.text(videoGames[i]);
+    button.attr("game-name", gifButArr[i]);
+    button.text(gifButArr[i]);
     $("#buttonItems").append(button);
     $("#buttonItems").append(" ");
   }
@@ -238,7 +248,7 @@ $("#addGameItem").on("click", function(event) {
   }).done(function(response) {
 
     if (response.pagination.total_count >= 12) {
-      videoGames.push(gameInput);
+      gifButArr.push(gameInput);
       showButtons();
     } else if (response.pagination.total_count === 0) {
       $("#entry").html(" Sorry, nothing in the GIPHY database.  Please try again!");

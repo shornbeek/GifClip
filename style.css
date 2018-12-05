@@ -91,11 +91,12 @@ h1 {
   font-size: 48px;
   text-align: center;
   text-transform: uppercase;
-  @media (max-width:767px){
+  
+  /* @media (max-width:767px){
     font-size: 32px;
     font-family: 'Poppins', sans-serif;
 
-  }
+  } */
 }
 
 p {
@@ -121,10 +122,10 @@ p {
   text-align: center;
 }
 
-.form {
+/* .form {
   text-align: center;
   // float: left;
-}
+} */
 
 .form-control,
 .input-group-btn .btn {
@@ -155,11 +156,11 @@ p {
   top: -5px;
 }
 
-// .settings-menu {
+/* // .settings-menu {
 //   display: none;
 position: relative;
      
-// }
+// } */
 
 /*--------------------------------------------------
 
@@ -272,40 +273,19 @@ position: relative;
   }
 
   .search__result {
-      height:250px;
-      width: 250px;
+      height:350px;
+      width: 350px;
       margin: 10px;
       opacity: 100%;
       transition: .3s ease-in-out;
   }
+
 
   .search__result:hover {
     filter: opacity(50%);
   }
 
 
-
-
-
-
-/* buttons start
-
-body {
-  background-color: teal;
-  /*just in case main img doesn't load*/
-
-  /* background-image: url("../images/city_lights.gif"); */
-
-  /* background-image: url("../images/motorcycle.gif");
-  background-size: cover;  */
-
-  /* background-image: url("../images/80sgrid.gif");
-  background-size: cover; */
-
-  /* Note: downloaded and linked to local copy of images as opposed to web-hosted versions. Think my site may have been blocked from referencing their image too much */
-
-
-}
 
 h1 {
   color: white;
@@ -354,7 +334,8 @@ h4 {
   /* https://css-tricks.com/adding-stroke-to-web-text/ */
   -webkit-text-stroke-width: 1px;
    -webkit-text-stroke-color: white;
-
+ 
+   width: 100%;
   padding: 1em;
   background-color: white;
   display: flex;
@@ -372,9 +353,9 @@ align-items: center;
 /*   display: "block"; */
 }
 
-#theMagic {
+/* #theMagic {
   margin-bottom: 5px;
-}
+} */
 
 
 
@@ -400,11 +381,11 @@ body {
   padding: 2rem;
 }
 
-.image {
+/* .image {
   display: block;
   max-width: 100%;
   height: auto;
-}
+} */
 
 header {
   margin: 10vh auto 10vh auto;
