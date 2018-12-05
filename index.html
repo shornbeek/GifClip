@@ -2,14 +2,6 @@
 
 <html>
   <head>
-    
-      <script type="text/javascript">
-    var host = "gifclip.com";
-    if ((host == window.location.host) && (window.location.protocol != "https:"))
-      window.location.protocol = "https";
-    </script>
-    
-    
     <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
     <style> body {padding: 0; margin: 0;} </style>
     <script src="../p5.min.js"></script>
@@ -44,7 +36,7 @@
 <link rel="icon" href="http://example.com/favicon.png">
 
 
-
+ <title>Gifs for Guys</title>
 
 
     <div class="topnav">
@@ -69,7 +61,7 @@
 
                 <span class="input-group-btn">
                 </span>
-                  <input id="queryInput" type="text" class="form-control" value="Gif Fun" placeholder="Search for...">
+                  <input id="queryInput" type="text" class="form-control" value="#Gif" placeholder="Search for...">
                   
             </div><!-- /input-group -->
         </div><!-- /.form -->
@@ -78,6 +70,10 @@
 
     </div>
     <div id="giphy-link"></div>
+
+
+
+
 
 <script>
 
@@ -162,14 +158,11 @@
 
 
 
-
-
-
 <body>
   <div id='container'>
 
-     <h3><center> View More!</h3>
-      <h4>Choose a category then click on the gif!</h4>
+     <h4><center> View More. Click on the gif.</h4>
+    
 
 
     <!-- This will be where the buttons are added and displayed. -->
@@ -289,9 +282,9 @@ function display() {
     for (var i = 0; i < response.data.length; i++) {
 
       // Gets the animated gif URL
-      var active = response.data[i].images.fixed_width.url;
+      var active = response.data[i].images.fixed_width_still.url;
       // Gets the still gif URL
-      var still = response.data[i].images.fixed_width_still.url;
+      var still = response.data[i].images.fixed_width.url;
       var rating = "Rating: " + (response.data[i].rating).toUpperCase();
 
       // Creates the new img item
@@ -356,7 +349,7 @@ function display() {
 
 <body>
 
-   <h3> Not what your looking for? </h3>
+   <h4> Not what your looking for? </h4>
 
 
     <div class="header">

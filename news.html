@@ -279,9 +279,9 @@ function display() {
     for (var i = 0; i < response.data.length; i++) {
 
       // Gets the animated gif URL
-      var active = response.data[i].images.fixed_width.url;
+      var active = response.data[i].images.fixed_width_still.url;
       // Gets the still gif URL
-      var still = response.data[i].images.fixed_width_still.url;
+      var still = response.data[i].images.fixed_width.url; 
       var rating = "Rating: " + (response.data[i].rating).toUpperCase();
 
       // Creates the new img item
