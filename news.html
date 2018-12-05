@@ -35,7 +35,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
+ <title>Gifs for Guys</title>
 
     <div class="topnav">
   <a class="active" href="http://gifclip.com">GifClip</a>
@@ -59,7 +59,7 @@
 
                 <span class="input-group-btn">
                 </span>
-                  <input id="queryInput" type="text" class="form-control" value="Hot Girl" placeholder="Search for...">
+                  <input id="queryInput" type="text" class="form-control" value="Girl Bikini" placeholder="Search for...">
                   
             </div><!-- /input-group -->
         </div><!-- /.form -->
@@ -68,8 +68,6 @@
 
     </div>
     <div id="giphy-link"></div>
-
-</div>
 
 
 
@@ -157,32 +155,11 @@
 
 
 
-<html lang="en">
-
-<head>
-  <!-- Spec: http://gw.bootcampcontent.com/GW-Coding-Boot-Camp/GWAR201710FSF5-Class-Repository-FSF/blob/master/06-ajax/02-Homework/Instructions/homework.md -->
-
-  <!-- Objective: create page which can dynamically create new buttons which, when clicked, show some  relating GIFs from the GIPHY website. Additinoally, pick a theme and have a few pre-made buttons already on page. When GIFs appear, user should be able to click them to start and stop their respective animations. -->
-
-  <meta charset="UTF-8">
-  <title>Gifs for Guys</title>
-
-
-  <!-- Custom Font Imported from Google -->
-  <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans" /> -->
-
-  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
-
-  <!-- Link to own CSS -->
-  <link type='text/css' rel='stylesheet' href='assets/css/style.css' />
-
-</head>
 
 <body>
   <div id='container'>
 
-     <h3><center> View More!</h3>
-      <h4>Choose a category then click on the gif!</h4>
+    <h4><center> View More. Click on the gif.</h4>
 
 
     <!-- This will be where the buttons are added and displayed. -->
@@ -302,9 +279,9 @@ function display() {
     for (var i = 0; i < response.data.length; i++) {
 
       // Gets the animated gif URL
-      var active = response.data[i].images.fixed_width.url;
+      var active = response.data[i].images.fixed_width_still.url;
       // Gets the still gif URL
-      var still = response.data[i].images.fixed_width_still.url;
+      var still = response.data[i].images.fixed_width.url; 
       var rating = "Rating: " + (response.data[i].rating).toUpperCase();
 
       // Creates the new img item
@@ -369,7 +346,7 @@ function display() {
 
 <body>
 
-   <h3> Not what your looking for? </h3>
+   <h4> Not what your looking for? </h4>
 
 
     <div class="header">
