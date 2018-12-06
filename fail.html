@@ -193,7 +193,7 @@
 </html>
 
 <script>
-
+display();
 // ref example(s) from class: GWU_Data_Bootcamp/GWAR201710FSF5-Class-Repository-FSF/06-ajax/01-Activities/14-DynamicElements
 
 // This is the initial videogame title array.
@@ -265,6 +265,9 @@ function display() {
   clearGifs();
 
   var gameTerm = $(this).attr("game-name");
+  if (!gameTerm) {
+    gameTerm = "Falling";
+  }
 
   // The GIPHY query.  This limits to 12 results
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gameTerm + "&limit=12&api_key=XNXXBU3B0vxwgDFnrUVQrnh1U12f5CSP" + "&offset=" + Math.floor((Math.random() * 100) + 1);
