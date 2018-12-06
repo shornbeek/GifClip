@@ -41,7 +41,7 @@
   <a class="active" href="http://gifclip.com">GifClip</a>
     <a href="http://gifclip.com/trend.html" class="action-button  animate red">Trending</a>
      <a href="http://gifclip.com/fail.html" class="action-button  animate red">Funny</a>
-     <!-- <a href="http://gifclip.com/news.html" class="action-button  animate red">Sexy</a> -->
+     <a href="http://gifclip.com/news.html" class="action-button  animate red">Sexy</a>
 </div>
     </head>
  <body>
@@ -194,7 +194,7 @@
 <script>
 
 // ref example(s) from class: GWU_Data_Bootcamp/GWAR201710FSF5-Class-Repository-FSF/06-ajax/01-Activities/14-DynamicElements
-
+display()
 // This is the initial videogame title array.
 var videoGames = ["Trump", "Goverment", "Sports", "Tech", "Comedy", "Business", "Religion", "Healthy Living", "Stock Market", "Arts", "Weird News", "Women", "Politics", "Style", "Design", "Trends", "Fake News", "HashTag", "Internet", "Twitter", "FaceBook", "Google" , "White House", "CNN", "Fox News"];
 var gameGIF = "";
@@ -264,6 +264,9 @@ function display() {
   clearGifs();
 
   var gameTerm = $(this).attr("game-name");
+  if (!gameTerm) {
+    gameTerm = "Trump";
+  }
 
   // The GIPHY query.  This limits to 12 results
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gameTerm + "&limit=12&api_key=XNXXBU3B0vxwgDFnrUVQrnh1U12f5CSP" + "&offset=" + Math.floor((Math.random() * 100) + 1);

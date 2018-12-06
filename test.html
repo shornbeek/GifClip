@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="jumbotron">NYC APP</div>
+          <form id="searchForm">
+            <label for="articleSearch">Search for articles</label>
+            <input type="text" id="articleSearch" /><br />
+
+            <input id="find-article" type="submit" value="Article Search" />
+            <select id="selector">
+              <option value="10">10</option>
+              <option value="5">5</option>
+              <option value="1">1</option>
+            </select>
+          </form>
+          <br>
+          <button id="clear">Clear</button>
+        </div>
+      </div>
+    </div>
+    <div id="articleDump"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $("#find-article").on("click", function(event) {
+        event.preventDefault();
+        var searchTerm = $("#articleSearch").val();
+        var pages = $("#selector").val();
+        console.log(pages);
+        var queryUrl =
+          "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=b9f91d369ff59547cd47b931d8cbc56b:0:74623931&q=" +
+          searchTerm;
+        console.log(searchTerm);
+        $.ajax({
+          url: queryUrl,
+          method: "GET"
+        }).then(function(data) {
+          var articles = data.response.docs;
+          for (var i = 0; i < pages; i++) {
+            console.log(articles[i]);
+            var articleDiv = $("<div>");
+            var headline = $("<h1>").append(articles[i].headline.main);
+            var articalUrl = $("<a>").attr("href" , articles[i].web_url).text(articles[i].web_url).attr("target","_blank");
+            articleDiv.append(headline, articalUrl);
+            $("#articleDump").append(articleDiv);
+          }
+        });
+      });
+      $("#clear").on("click", function(){
+        $("#articleDump").empty();
+        $("#articleSearch").val("");
+      });
+    </script>
+  </body>
+</html>
